@@ -43,13 +43,11 @@ async def main():
     except* Exception as e:
         print("Errors:", *[(str(e),e) for e in e.exceptions])
     finally:
-        success = []
+        completed_tasks = []
         for task in [taskA, taskB, taskC, taskD, taskE]:
-            if task.exception():
-                print(f"Task {task.get_name()} raised an exception: {task.exception()}")
-            else:
-                success.append(task.result())
-        return success
+            if not task.exception():
+                completed_tasks.append(task)
+        return completed_tasks
 
 
 
