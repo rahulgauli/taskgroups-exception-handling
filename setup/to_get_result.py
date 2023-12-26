@@ -30,28 +30,28 @@ async def func_e(anum: int):
     print(int(anum))
     return "func_e: I am func_e and I am okay"
 
-async def main():
-    try:
-        async with asyncio.TaskGroup() as tg:
-            taskA = tg.create_task(func_a())
-            taskB = tg.create_task(func_b())
-            taskC = tg.create_task(func_c())
-            taskD = tg.create_task(func_d())
-            taskE = tg.create_task(func_e(anum = "10 "))
-    except* SecretVaultServiceException as e:
-        print("Errors:", *[str(e) for e in e.exceptions])
-    except* Exception as e:
-        print("Errors:", *[(str(e),e) for e in e.exceptions])
-    finally:
-        completed_tasks = []
-        for task in [taskA, taskB, taskC, taskD, taskE]:
-            if not task.exception():
-                completed_tasks.append(task)
-        return completed_tasks
+# async def main():
+#     try:
+#         async with asyncio.TaskGroup() as tg:
+#             taskA = tg.create_task(func_a())
+#             taskB = tg.create_task(func_b())
+#             taskC = tg.create_task(func_c())
+#             taskD = tg.create_task(func_d())
+#             taskE = tg.create_task(func_e(anum = "10 "))
+#     except* SecretVaultServiceException as e:
+#         print("Errors:", *[str(e) for e in e.exceptions])
+#     except* Exception as e:
+#         print("Errors:", *[(str(e),e) for e in e.exceptions])
+#     finally:
+#         completed_tasks = []
+#         for task in [taskA, taskB, taskC, taskD, taskE]:
+#             if not task.exception():
+#                 completed_tasks.append(task)
+#         return completed_tasks
 
 
 
 
-ans = asyncio.run(main())
-print(ans)
+# ans = asyncio.run(main())
+# print(ans)
         

@@ -1,5 +1,8 @@
+import asyncio
 from fastapi import FastAPI
 from setup.payload_categorization import RequestBodySchema, TaskGroup
+from setup.to_get_result import SecretVaultServiceException
+from internal.namespace import create_vault_namespace
 
 class ServerLoud:
     app = FastAPI(title="ServerLoud", version="0.1.0")
@@ -26,7 +29,25 @@ async def hello():
 
 @app.post("/namespaces")
 async def create_hashicorp_vault_namespace(request_body: RequestBodySchema):
-    print(request_body)
-    print(TaskGroup.add_on_services_task_list)
-    return {"message": "We have successfully created taskgroups"}
+    try:
+        
+        async with asyncio.TaskGroup() as primary:
+            taskNamespace = primary.create_task(create_vault_namespace())
+
+        async with asyncio.TaskGroup() as add_on_services:
+            for key, value in TaskGroup.add_on_services_task_list.items():
+                for a_task in value:
+                    add_on_services.create_task(a_task())
+    
+        print("All the tasks were done")
+
+    except* SecretVaultServiceException as e:
+        print("Errors:", *[str(e) for e in e.exceptions])
+
+    except* Exception as e:
+        print("Errors:", *[(str(e),e) for e in e.exceptions])
+
+    finally:
+        return "We have successfully created namespaces"
+
 
