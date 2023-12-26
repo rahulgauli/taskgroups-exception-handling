@@ -17,10 +17,10 @@
 
 from pydantic import BaseModel, ConfigDict, Field, constr, field_validator
 from typing import ClassVar, List, Union
-from kubernetes_auth import k8s_authentication_methods
-from github_oidc_auth import github_oidc_methods
-from ad_auth_engine import ad_auth_engine_methods
-from ldap_secrets_engine import ldap_secrets_engine_methods
+from internal.kubernetes_auth import k8s_authentication_methods
+from internal.github_oidc_auth import github_oidc_methods
+from internal.ad_auth_engine import ad_auth_engine_methods
+from internal.ldap_secrets_engine import ldap_secrets_engine_methods
 
 
 class TaskGroup:
