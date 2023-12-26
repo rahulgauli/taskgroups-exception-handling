@@ -12,11 +12,11 @@ Sample Payload
 "add_on_services": {
     "auth_methods": {
         "kubernetes_auth_engine": {"cluster_names":["cluster_name_1", "cluster_name_2"], "kubernetes_namespace": "namespace_name"},
-        "ad_auth_engine": True,
-        "github_oidc_auth": False,
+        "ad_auth_engine": "True",
+        "github_oidc_auth": "False",
     },
     "secrets_engines": {
-        "ldap_secrets_engine": True
+        "ldap_secrets_engine": "True"
         }
 }
 }
