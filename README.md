@@ -1,4 +1,4 @@
-### taskgroups-exception-handling
+### Taskgroups-Pydantic-ExceptionGroups
 This is a simple restructure POC to combine python 3.11 ExceptionGroup and Pydantic to handle taskgroups via pydantic
 
 Sample Payload 
